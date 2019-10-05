@@ -19,6 +19,7 @@ let calcFinalyArea = (x = (PERCENT.value)) => {
     let youArea = (139 * (100 - x)) / 100;
     CALC_AREA.value = youArea.toFixed(2);
 }
+
 let Area = () => {
     calcDiscountSI();
     calcFinalyArea();
@@ -32,17 +33,6 @@ let calcNumberSpr = (x = Math.sqrt(CALC_AREA.value)) => {
 
 const USER_F_R = document.getElementById("user_flow_rate");
 const USER_P_L = document.getElementById("userPressureLoss");
-
-
-
-// function MyRound10(x = USER_F_R.value) {
-//     let result = (Math.round(x / 10) * 10);
-
-//     console.log(result);
-// }
-
-
-
 
 
 let rppa = { //Reduced Pressure Principle Assembly  מז''ח
@@ -75,7 +65,6 @@ let rppa = { //Reduced Pressure Principle Assembly  מז''ח
             275: 12.7,
             300: 13.3,
             325: 14,
-            350: none,
         },
         size3: {
             0: 10.8,
@@ -98,7 +87,6 @@ let rppa = { //Reduced Pressure Principle Assembly  מז''ח
             425: 9.9,
             450: 10.2,
             475: 10.4,
-            500: none,
         },
         size4: {
             0: 11,
@@ -160,7 +148,6 @@ let rppa = { //Reduced Pressure Principle Assembly  מז''ח
             275: 12.7,
             300: 13.3,
             325: 14,
-            350: none
         },
         size3: {
             0: 10.8,
@@ -183,7 +170,6 @@ let rppa = { //Reduced Pressure Principle Assembly  מז''ח
             425: 9.9,
             450: 10.2,
             475: 10.4,
-            500: none,
         },
         size4: {
             0: 11,
@@ -236,8 +222,6 @@ let calcPressureLost = (x = USER_F_R.value) => {
     console.log(USER_F_R.value)
     console.log(USER_P_L.value)
 }
-
-
 
 
 //############# pressure lost ####################
