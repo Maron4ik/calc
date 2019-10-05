@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--оптимизированный для мобильных устройств -->
+    <link rel="stylesheet" href="client/css/main.css">
+    <link rel="stylesheet" href="client/css/bootstrap.css">
+    <title>NFPA Interactive</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3>NFPA Interactive</h3>
+        <!-- верхняя шапка навигация -->
+        <div class="row">
+
+        </div>
+
+
+
+        <!--##################  spr calc  ########################### -->
+        <div class="row">
+            <div class="col-md-5 col-lg-4 border border-light shadow p-3 mb-5 bg-white rounded">
+                <div class="container">
+                    <p class="text-center">celling height (m)</p>
+                    <input class="form-control" aria-describedby="addon-wrapping" type="text" size="40"
+                        id="ceilingHeight">
+                    <button type="button" class="btn btn-success mt-3" id="calc" onclick="Area()">calc</button>
+                    <p>You discount <output name="result" id="persent">0</output></p>
+                    <p>You area after discount: <output class="text-primary font-weight-bold" name="youArea"
+                            id="calcArea"></output></p><br>
+
+                    <label>distance between sprinklers (m)</label>
+                    <input class="form-control" aria-describedby="addon-wrapping" type="text" size="40" id="sprNumber">
+                    <button type="button" class="btn btn-success mt-3" id="calcSpr"
+                        onclick="calcNumberSpr()">calc</button>
+                    <p>Number of spr on branch: <output class="text-primary font-weight-bold" name="sprN"
+                            id="sprN"></output></p><br>
+                </div>
+            </div>
+        </div>
+        <!-- ################  spr calc end  ######################## -->
+
+
+        <!-- ################  pressure loss calc  ######################## -->
+        <div class="row">
+            <div class="col-md-5 col-lg-4 border border-light shadow p-3 mb-5 bg-white rounded">
+                <div class="container">
+                    <p class="text-center">GPM</p>
+                    <input class="form-control" aria-describedby="addon-wrapping" type="text" size="40"
+                        id="user_flow_rate">
+                    <button type="button" class="btn btn-success mt-3" id="calcPressureLoss"
+                        onclick="calcPressureLost()">calc</button>
+                    <p>You pressure loss (PSI): <output class="text-primary font-weight-bold" name="pressure loss"
+                            id="userPressureLoss"></output></p><br>
+                </div>
+            </div>
+        </div>
+        <!-- ################  pressure loss calc end  ######################## -->
+
+        <div class="row">
+
+        </div>
+
+
+
+        <div class="row">
+
+        </div>
+
+
+
+        <footer class="fixed-bottom">
+            maron.alexey@gmail.com
+        </footer>
+    </div>
+    <script type="text/javascript" src="client/javascript/script.js"></script>
+    <!-- <script type="text/javascript" src="javascript/bootstrap.js"></script> -->
+
+</body>
+
+</html>
