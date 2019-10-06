@@ -31,7 +31,11 @@ let calcNumberSpr = (x = Math.sqrt(CALC_AREA.value)) => {
 }
 //############# area end ####################
 
+// ############# pressure loss ####################
+
 const USER_FLOW_RATE = document.getElementById("userFlowRate");
+const USER_ACCESSORY = document.getElementById("userFlowRate");
+const USER_DIAMETER = document.getElementById("userFlowRate");
 const USER_PESSURE_LOSS = document.getElementById("userPressureLoss");
 let multiple = 25;
 let flowRateMultiple;
@@ -218,17 +222,16 @@ let rppa = { //Reduced Pressure Principle Assembly  מז''ח
 
 function roundToMultiple(x = (USER_FLOW_RATE.value)) {
     flowRateMultiple = Math.round(x / multiple) * multiple;
+    console.log(flowRateMultiple)
 }
-console.log(flowRateMultiple)
 
-let findPressureLoss = (x = flowRateMultiple) => {
+let findPressureLossRppa = (x = flowRateMultiple) => {
     USER_PESSURE_LOSS.value = rppa.model_375_A.size2[x];
 }
 
-
 let calcPressureLoss = () => {
     roundToMultiple();
-    findPressureLoss();
+    findPressureLossRppa();
 }
 
-// ############# pressure lost ####################
+// ############# pressure loss end ####################
