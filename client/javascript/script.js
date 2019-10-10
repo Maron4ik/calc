@@ -1,4 +1,43 @@
-//############# area ####################
+log = console.log;
+log(accsList);
+
+//############# Local Storage ####################
+
+// const setStoreValue = key => function()
+// { localStorage.setItem(key, this.value) };
+
+// ceilingHeight.addEventListener("change",
+//  setStoreValue("dataCeilingHeight"))
+
+
+const ceilingHeightSelect = document.getElementById("ceilingHeight");
+ceilingHeightSelect.addEventListener('change', function () {
+    localStorage.setItem('dataCeilingHeight', this.value);
+}, false);
+
+(localStorage.getItem('dataCeilingHeight')) ? ceilingHeight.value = localStorage.getItem("dataCeilingHeight"): '';
+
+
+const sprNumberSelect = document.getElementById("sprNumber");
+sprNumberSelect.addEventListener('change', function () {
+    localStorage.setItem('dataSprNumber', this.value);
+}, false);
+
+(localStorage.getItem('dataSprNumber')) ? sprNumber.value = localStorage.getItem("dataSprNumber"): '';
+
+
+const userFlowRateSelect = document.getElementById("userFlowRate");
+userFlowRateSelect.addEventListener('change', function () {
+    localStorage.setItem('dataUserFlowRate', this.value);
+}, false);
+
+(localStorage.getItem('dataUserFlowRate')) ? userFlowRate.value = localStorage.getItem("dataUserFlowRate"): '';
+
+//############# Local Storage End ####################
+
+
+
+//############# Area ####################
 const DOC_PERCENT = document.getElementById("persent");
 const CELLING_HEIGHT = document.getElementById("ceilingHeight");
 const PERCENT = document.getElementById("persent");
@@ -29,209 +68,50 @@ let calcNumberSpr = (x = Math.sqrt(CALC_AREA.value)) => {
     numberOfSpr = (1.2 * x) / L;
     SPR_N.value = Math.ceil(numberOfSpr);
 }
-//############# area end ####################
+//############# Area End ####################
 
-// ############# pressure loss ####################
+//############# pressure loss ####################
 
 const USER_FLOW_RATE = document.getElementById("userFlowRate");
-const USER_ACCESSORY = document.getElementById("userFlowRate");
-const USER_DIAMETER = document.getElementById("userFlowRate");
-const USER_PESSURE_LOSS = document.getElementById("userPressureLoss");
+const USER_ACCESSORY = document.getElementById("accessory");
+const USER_DIAMETER = document.getElementById("diameter");
+const PRESSURE_LOSS = document.getElementById("pressureLoss");
+const USER_PESSURE_LOSS = document.getElementById("userPressureLossTotal");
+const MODEL = document.getElementById("row1Model");
 let multiple = 25;
 let flowRateMultiple;
 
 
-let rppa = { //Reduced Pressure Principle Assembly  מז''ח
-    model_375_A: {
-        type: "Reduced Pressure Principle Assembly",
-        model: "375A",
-        manufacturer: "WILKINS",
-        cost: 400,
-        provider: {
-            name: 'בע"מ‏‏ טכני ציוד ש.א.ל.‏',
-            adress: "חולון‏ 36‏ המרכבה‏",
-            tel: 03 - 5566363,
-        },
-        approvals: {
-            UL: true,
-            FM: true,
-        },
-        size2: {
-            0: 11,
-            25: 13,
-            50: 13,
-            75: 12.5,
-            100: 12,
-            125: 12,
-            150: 11.9,
-            175: 11.4,
-            200: 11.2,
-            225: 11.5,
-            250: 12.1,
-            275: 12.7,
-            300: 13.3,
-            325: 14,
-        },
-        size3: {
-            0: 10.8,
-            25: 13.2,
-            50: 13.1,
-            75: 12.5,
-            100: 12,
-            125: 11.8,
-            150: 11.1,
-            175: 10.5,
-            200: 10.1,
-            225: 10,
-            250: 10,
-            275: 9.9,
-            300: 9.9,
-            325: 9.9,
-            350: 9.8,
-            375: 9.7,
-            400: 9.7,
-            425: 9.9,
-            450: 10.2,
-            475: 10.4,
-        },
-        size4: {
-            0: 11,
-            25: 13.5,
-            50: 13,
-            75: 12.5,
-            100: 12,
-            125: 11.5,
-            150: 11.9,
-            175: 11.5,
-            200: 11.2,
-            225: 11.5,
-            250: 12.1,
-            275: 12.7,
-            300: 13.3,
-            325: 14,
-            350: 15,
-            375: 15,
-            400: 13,
-            425: 12,
-            450: 0,
-            475: 0,
-            500: 13,
-            525: 12,
-            550: 0,
-            575: 0,
-            600: 11,
-            625: 13,
-            650: 12,
-            675: 0,
-            700: 0,
-        },
-        size6: {
 
-        },
-        size8: {
-
-        },
-        size10: {
-
-        },
-    },
-    model_XL_40_20: {
-        type: "Reduced Pressure Principle Assembly",
-        model: "XL 40-20 pn 12",
-
-        size2: {
-            0: 11,
-            25: 13,
-            50: 13,
-            75: 12.5,
-            100: 12,
-            125: 12,
-            150: 11.9,
-            175: 11.4,
-            200: 11.2,
-            225: 11.5,
-            250: 12.1,
-            275: 12.7,
-            300: 13.3,
-            325: 14,
-        },
-        size3: {
-            0: 10.8,
-            25: 13.2,
-            50: 13.1,
-            75: 12.5,
-            100: 12,
-            125: 11.8,
-            150: 11.1,
-            175: 10.5,
-            200: 10.1,
-            225: 10,
-            250: 10,
-            275: 9.9,
-            300: 9.9,
-            325: 9.9,
-            350: 9.8,
-            375: 9.7,
-            400: 9.7,
-            425: 9.9,
-            450: 10.2,
-            475: 10.4,
-        },
-        size4: {
-            0: 11,
-            25: 13.5,
-            50: 13,
-            75: 12.5,
-            100: 12,
-            125: 11.5,
-            150: 11.9,
-            175: 11.5,
-            200: 11.2,
-            225: 11.5,
-            250: 12.1,
-            275: 12.7,
-            300: 13.3,
-            325: 14,
-            350: 15,
-            375: 15,
-            400: 13,
-            425: 12,
-            450: 0,
-            475: 0,
-            500: 13,
-            525: 12,
-            550: 0,
-            575: 0,
-            600: 11,
-            625: 13,
-            650: 12,
-            675: 0,
-            700: 0,
-        },
-        size6: {
-
-        },
-        size8: {
-
-        },
-        size10: {
-
-        },
-    }
-}
 
 function roundToMultiple(x = (USER_FLOW_RATE.value)) {
     flowRateMultiple = Math.round(x / multiple) * multiple;
-    console.log(flowRateMultiple)
 }
 
-let findPressureLossRppa = (x = flowRateMultiple) => {
-    USER_PESSURE_LOSS.value = rppa.model_375_A.size2[x];
+let getAccsValue1 = () => {
+    PRESSURE_LOSS.value =
+        (_.get(accsList, [`${USER_ACCESSORY.value}`, 'model', 'model_375_A', `size${USER_DIAMETER.value}`, `${flowRateMultiple}`]))
 }
-
 let calcPressureLoss = () => {
     roundToMultiple();
-    findPressureLossRppa();
+    getAccsValue1();
 }
 
+
 // ############# pressure loss end ####################
+
+
+// ############# trening ####################
+
+var element = document.getElementById('some-block');
+var elements = document.getElementsByClassName('all');
+
+function changeSingle() {
+    element.innerHTML = 'Here is some content';
+}
+
+function changeCollection() {
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].innerHTML = 'We all changed';        
+    }
+}

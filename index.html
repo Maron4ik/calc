@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -9,6 +10,7 @@
     <!--оптимизированный для мобильных устройств -->
     <link rel="stylesheet" href="client/css/bootstrap.css">
     <link rel="stylesheet" href="client/css/main.css">
+
     <title>NFPA Interactive</title>
 </head>
 
@@ -48,168 +50,57 @@
 
         <!-- ################  pressure loss calc  ######################## -->
         <div class="row">
-            <div class=" border border-light shadow p-3 mb-5 bg-white rounded">
+            <div class="border border-light shadow p-3 mb-5 bg-white rounded">
                 <div class="container">
                     <p class="text-center">GPM</p>
                     <input class="form-control mt-2" aria-describedby="addon-wrapping" type="text" size="40"
                         id="userFlowRate">
-
                     <table class="table table-borderless table-hover">
                         <thead>
                             <tr class="align-middle text-center">
                                 <th scope="col">#</th>
                                 <th scope="col">accessory</th>
+                                <th scope="col">model</th>
                                 <th scope="col">diameter (inch)</th>
-                                <th scope="col">pressure loss</th>
+                                <th scope="col">pressure loss (psi)</th>
                             </tr>
                         </thead>
                         <tbody class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
                             <tr>
                                 <th scope="row" class="align-middle text-center">1</th>
-                                <td><select class="custom-select mt-2 center-select" id="row1Accessory">
+                                <td><select class="custom-select mt-2 center-select" id="accessory"
+                                        onchange="calcPressureLoss()">
                                         <option value="none">none</option>
-                                        <option value="1">מז''ח</option>
-                                        <option value="2">אל חוזר</option>
-                                        <option value="3" Selected>אל חוזר כפול</option>
-                                        <option value="4">שעון טורבו</option>
-                                        <option value="5">שעון משולב</option>
-                                        <option value="6">מסנן</option>
-                                        <option value="7">רגש זרימה</option>
+                                        <option value="redusedPressure" Selected>מז''ח</option>
+                                        <option value="checkValve" disabled>אל חוזר</option>
+                                        <option value="doubleCheckValve">אל חוזר כפול</option>
+                                        <option value="ultrasonicMeter">שעון טורבו</option>
+                                        <option value="compoundWaterMeter" disabled>שעון משולב</option>
+                                        <option value="strainer" disabled>מסנן</option>
+                                        <option value="flowSwitch" disabled>רגש זרימה</option>
                                     </select></td>
-                                <td><select class="custom-select mt-2" id="row1Diameter">
-                                        <option value="2inch">2</option>
-                                        <option value="3inch">3</option>
-                                        <option value="4inch" Selected>4</option>
-                                        <option value="6inch">6</option>
-                                        <option value="8inch">8</option>
-                                        <option value="10inch">10</option>
+                                <td><select class="custom-select mt-2 center-select" id="model" disabled>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
                                     </select></td>
-                                <td class="align-middle text-center"><output class="text-primary font-weight-bold"
-                                        name="pressure loss" id="row1PressureLoss"></output></td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row" class="align-middle text-center">2</th>
-                                <td><select class="custom-select mt-2 center-select">
-                                        <option value="none">none</option>
-                                        <option value="1">מז''ח</option>
-                                        <option value="2">אל חוזר</option>
-                                        <option value="3">אל חוזר כפול</option>
-                                        <option value="4" Selected>שעון טורבו</option>
-                                        <option value="5">שעון משולב</option>
-                                        <option value="6">מסנן</option>
-                                        <option value="7">רגש זרימה</option>
-                                    </select></td>
-                                <td><select class="custom-select mt-2">
-                                        <option value="2">2</option>
-                                        <option value="3" Selected>3</option>
-                                        <option value="4">4</option>
-                                        <option value="6">6</option>
-                                        <option value="8">8</option>
-                                        <option value="10">10</option>
-                                    </select></td>
-                                <td class="align-middle text-center"><output class="text-primary font-weight-bold"
-                                        name="pressure loss" id="userPressureLoss"></output></td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row" class="align-middle text-center">3</th>
-                                <td><select class="custom-select mt-2 center-select">
-                                        <option value="none">none</option>
-                                        <option value="1">מז''ח</option>
-                                        <option value="2">אל חוזר</option>
-                                        <option value="3">אל חוזר כפול</option>
-                                        <option value="4">שעון טורבו</option>
-                                        <option value="5">שעון משולב</option>
-                                        <option value="6" Selected>מסנן</option>
-                                        <option value="7">רגש זרימה</option>
-                                    </select></td>
-                                <td><select class="custom-select mt-2">
+                                <td><select class="custom-select mt-2" id="diameter" onchange="calcPressureLoss1()">
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4" Selected>4</option>
                                         <option value="6">6</option>
-                                        <option value="8">8</option>
-                                        <option value="10">10</option>
+                                        <option value="8" disabled>8</option>
+                                        <option value="10" disabled>10</option>
                                     </select></td>
                                 <td class="align-middle text-center"><output class="text-primary font-weight-bold"
-                                        name="pressure loss" id="userPressureLoss"></output></td>
+                                        name="pressure loss" id="pressureLoss"></output></td>
                             </tr>
 
-                            <tr>
-                                <th scope="row" class="align-middle text-center">4</th>
-                                <td><select class="custom-select mt-2 center-select">
-                                        <option value="none" Selected>none</option>
-                                        <option value="1">מז''ח</option>
-                                        <option value="2">אל חוזר</option>
-                                        <option value="3">אל חוזר כפול</option>
-                                        <option value="4">שעון טורבו</option>
-                                        <option value="5">שעון משולב</option>
-                                        <option value="6">מסנן</option>
-                                        <option value="7">רגש זרימה</option>
-                                    </select></td>
-                                <td><select class="custom-select mt-2">
-                                        <option value="none" Selected>none</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="6">6</option>
-                                        <option value="8">8</option>
-                                        <option value="10">10</option>
-                                    </select></td>
-                                <td class="align-middle text-center"><output class="text-primary font-weight-bold"
-                                        name="pressure loss" id="userPressureLoss"></output></td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row" class="align-middle text-center">5</th>
-                                <td><select class="custom-select mt-2 center-select">
-                                        <option value="none" Selected>none</option>
-                                        <option value="1">מז''ח</option>
-                                        <option value="2">אל חוזר</option>
-                                        <option value="3">אל חוזר כפול</option>
-                                        <option value="4">שעון טורבו</option>
-                                        <option value="5">שעון משולב</option>
-                                        <option value="6">מסנן</option>
-                                        <option value="7">רגש זרימה</option>
-                                    </select></td>
-                                <td><select class="custom-select mt-2">
-                                        <option value="none" Selected>none</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="6">6</option>
-                                        <option value="8">8</option>
-                                        <option value="10">10</option>
-                                    </select></td>
-                                <td class="align-middle text-center"><output class="text-primary font-weight-bold"
-                                        name="pressure loss" id="userPressureLoss"></output></td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row" class="align-middle text-center">6</th>
-                                <td><select class="custom-select mt-2 center-select">
-                                        <option value="none" Selected>none</option>
-                                        <option value="1">מז''ח</option>
-                                        <option value="2">אל חוזר</option>
-                                        <option value="3">אל חוזר כפול</option>
-                                        <option value="4">שעון טורבו</option>
-                                        <option value="5">שעון משולב</option>
-                                        <option value="6">מסנן</option>
-                                        <option value="7">רגש זרימה</option>
-                                    </select></td>
-                                <td><select class="custom-select mt-2">
-                                        <option value="none" Selected>none</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="6">6</option>
-                                        <option value="8">8</option>
-                                        <option value="10">10</option>
-                                    </select></td>
-                                <td class="align-middle text-center"><output class="text-primary font-weight-bold"
-                                        name="pressure loss" id="userPressureLoss"></output></td>
-                            </tr>
 
                             <tr>
                                 <th scope="row"></th>
@@ -220,43 +111,50 @@
                                 </td>
 
                                 <td class="align-middle text-center mt-3">
-                                    You pressure loss (PSI):
+                                    You total pressure loss
                                     <output class="text-primary font-weight-bold" name="pressure loss"
-                                        id="userPressureLoss"></output>
+                                        id="userPressureLoss3"></output>
                                 </td>
+
+
+                                <td class="align-middle text-center mt-3">
+                                    (PSI):
+                                    <output class="text-primary font-weight-bold" name="pressure loss" id=""></output>
+                                </td>
+
                                 <td><output class="text-primary font-weight-bold align-middle text-center"
-                                        name="pressure loss" id="userPressureLoss"></output></td>
+                                        name="pressure loss" id="userPressureLossTotal"></output></td>
                             </tr>
 
                         </tbody>
                     </table>
-
-
-
 
                 </div>
             </div>
         </div>
         <!-- ################  pressure loss calc end  ######################## -->
 
-        <div class="row">
+        <!-- ################  trening  ######################## -->
 
-        </div>
-
-
-
-        <div class="row">
-
-        </div>
-
+    <div id="some-block">Hello</div>
+    <div class="all">dsvfsd</div>
+    <div class="all">dsvfsddsf</div>
+    <div class="all">dsvfsdsdf</div>
+    <input type="button" value="Change 1" onclick="changeSingle(element)">
+    <input type="button" value="Change 2" onclick="changeCollection(elements)">
 
 
-        <footer class="fixed-bottom">
-            maron.alexey@gmail.com
-        </footer>
+    
+    <footer class="fixed-bottom">
+        maron.alexey@gmail.com
+    </footer>
     </div>
-    <script type="text/javascript" src="client/javascript/script.js"></script>
-    <!-- <script type="text/javascript" src="javascript/bootstrap.js"></script> -->
+    <script type="text/javascript" src="node_modules\lodash\lodash.js"></script>
+    <script type="module" src="client/javascript/script.js"></script>
+    <script type="module">
+    import accsList from './accs';
+    </script>
+    <!-- <script type="module" src="javascript/bootstrap.js"></script> -->
 
 </body>
 
