@@ -3,3 +3,10 @@
 select option:disabled {
     background-color: rgb(221, 219, 219);    
 }
+footer {
+    background-color:#28a745 ;
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+}

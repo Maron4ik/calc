@@ -1,6 +1,7 @@
 log = console.log;
-log(accsList);
 
+
+// 
 //############# Local Storage ####################
 
 // const setStoreValue = key => function()
@@ -10,28 +11,28 @@ log(accsList);
 //  setStoreValue("dataCeilingHeight"))
 
 
-const ceilingHeightSelect = document.getElementById("ceilingHeight");
-ceilingHeightSelect.addEventListener('change', function () {
-    localStorage.setItem('dataCeilingHeight', this.value);
-}, false);
+// const ceilingHeightSelect = document.getElementById("ceilingHeight");
+// ceilingHeightSelect.addEventListener('change', function () {
+//     localStorage.setItem('dataCeilingHeight', this.value);
+// }, false);
 
-(localStorage.getItem('dataCeilingHeight')) ? ceilingHeight.value = localStorage.getItem("dataCeilingHeight"): '';
-
-
-const sprNumberSelect = document.getElementById("sprNumber");
-sprNumberSelect.addEventListener('change', function () {
-    localStorage.setItem('dataSprNumber', this.value);
-}, false);
-
-(localStorage.getItem('dataSprNumber')) ? sprNumber.value = localStorage.getItem("dataSprNumber"): '';
+// (localStorage.getItem('dataCeilingHeight')) ? ceilingHeight.value = localStorage.getItem("dataCeilingHeight"): '';
 
 
-const userFlowRateSelect = document.getElementById("userFlowRate");
-userFlowRateSelect.addEventListener('change', function () {
-    localStorage.setItem('dataUserFlowRate', this.value);
-}, false);
+// const sprNumberSelect = document.getElementById("sprNumber");
+// sprNumberSelect.addEventListener('change', function () {
+//     localStorage.setItem('dataSprNumber', this.value);
+// }, false);
 
-(localStorage.getItem('dataUserFlowRate')) ? userFlowRate.value = localStorage.getItem("dataUserFlowRate"): '';
+// (localStorage.getItem('dataSprNumber')) ? sprNumber.value = localStorage.getItem("dataSprNumber"): '';
+
+
+// const userFlowRateSelect = document.getElementById("userFlowRate");
+// userFlowRateSelect.addEventListener('change', function () {
+//     localStorage.setItem('dataUserFlowRate', this.value);
+// }, false);
+
+// (localStorage.getItem('dataUserFlowRate')) ? userFlowRate.value = localStorage.getItem("dataUserFlowRate"): '';
 
 //############# Local Storage End ####################
 
@@ -70,48 +71,42 @@ let calcNumberSpr = (x = Math.sqrt(CALC_AREA.value)) => {
 }
 //############# Area End ####################
 
-//############# pressure loss ####################
-
-const USER_FLOW_RATE = document.getElementById("userFlowRate");
-const USER_ACCESSORY = document.getElementById("accessory");
-const USER_DIAMETER = document.getElementById("diameter");
-const PRESSURE_LOSS = document.getElementById("pressureLoss");
-const USER_PESSURE_LOSS = document.getElementById("userPressureLossTotal");
-const MODEL = document.getElementById("row1Model");
-let multiple = 25;
-let flowRateMultiple;
 
 
+// ############# GPM calc ####################
 
+const USER_GPM_RATE = document.getElementById("UserGPM");
+const USER_M3H_RATE = document.getElementById("UserM3H");
+const USER_FEET_RATE = document.getElementById("UserFeet");
+const USER_METER_RATE = document.getElementById("UserMeter");
+const USER_METEROFHEAD_RATE = document.getElementById("UserMeterOfHead");
+const USER_BAR_RATE = document.getElementById("UserBar");
+const USER_PSI_RATE = document.getElementById("UserPSI");
 
-function roundToMultiple(x = (USER_FLOW_RATE.value)) {
-    flowRateMultiple = Math.round(x / multiple) * multiple;
+function calcM3H() {
+    USER_M3H_RATE.value = USER_GPM_RATE.value * 0.227125    
 }
-
-let getAccsValue1 = () => {
-    PRESSURE_LOSS.value =
-        (_.get(accsList, [`${USER_ACCESSORY.value}`, 'model', 'model_375_A', `size${USER_DIAMETER.value}`, `${flowRateMultiple}`]))
+function calcGPM() {
+    USER_GPM_RATE.value = USER_M3H_RATE.value * 4.402868
 }
-let calcPressureLoss = () => {
-    roundToMultiple();
-    getAccsValue1();
+function calcFeet() {
+    USER_FEET_RATE.value = USER_METER_RATE.value * 3.28084    
 }
-
-
-// ############# pressure loss end ####################
-
+function calcMeter() {
+    USER_METER_RATE.value = USER_FEET_RATE.value * 0.3048
+}
+function calcPSI() {
+    USER_METEROFHEAD_RATE.value = USER_PSI_RATE.value * 0.7032496149020262
+    USER_BAR_RATE.value = USER_PSI_RATE.value * 0.0689476   
+}
+function calcMeterOfHead() {
+    USER_PSI_RATE.value = USER_METEROFHEAD_RATE.value * 1.4219702063247
+    USER_BAR_RATE.value = USER_METEROFHEAD_RATE.value * 0.09804139432     
+}
+function calcBar() {
+    USER_PSI_RATE.value = USER_BAR_RATE.value * 14.5038
+    USER_METEROFHEAD_RATE.value = USER_BAR_RATE.value * 10.199773339984054
+}
+// ############# GPM calc end ####################
 
 // ############# trening ####################
-
-var element = document.getElementById('some-block');
-var elements = document.getElementsByClassName('all');
-
-function changeSingle() {
-    element.innerHTML = 'Here is some content';
-}
-
-function changeCollection() {
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].innerHTML = 'We all changed';        
-    }
-}

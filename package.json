@@ -13,10 +13,13 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "express": "^4.17.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "milsymbol": "^2.0.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
+    "@babel/node": "^7.7.4",
     "browser-sync": "^2.26.7",
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.4"
   }
 }
